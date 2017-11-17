@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<script src="assets/js/angular.min.js"></script>
+
+<link href="assets/css/styles.css" rel="stylesheet" type="text/css"> </link>
+
+<body ng-cloak>
+    <h1>My AngularJS APP</h1>
+    <div ng-controller="InvoiceController as invoiceVm">
+        <p>Interpolation and use of ng-bind</p>
+        <label>Hello {{invoice.name}}</label><br/>
+
+        <label ng-bind="invoice.name"></label>
+        <input name="firstName" ng-model="invoiceVm.firstName" />Firstname : {{invoiceVm.firstName}}<br/>
+
+        <button ng-click="invoiceVm.sayHello()">sayHello</button>
+        <button ng-click="invoiceVm.displayName(invoiceVm.text)">displayName</button>
+
+        <!--<form name="userFrm">
+
+            <fieldset>
+                <h4>Reg Expression</h4>
+                <label for="input">Emial Address </label>
+                <input type="text" ng-model="email" id="input" name="email" ng-required="true" ng-pattern="invoiceVm.emailReg" />
+                </code>model = <code>{{email}}</code><br/>
+                <code>input untouched?: <b>{{userFrm.email.$untouched}}</b><br/>
+                <code>input touched?: <b>{{userFrm.email.$touched}}</b><br/>
+                <code>input dirty?: <b>{{userFrm.email.$dirty}}</b><br/>
+                <code>input pristine?: <b>{{userFrm.email.$pristine}}</b><br/>
+                <code>input invalid?: <b>{{userFrm.email.$invalid}}</b><br/>
+                <code>input valid?: <b>{{userFrm.email.$valid}}</b><br/>
+
+                <label for="input">Mobile No. </label>
+                <input type="text" ng-model="mobileno" id="input" name="mobileno" ng-required="true"  ng-pattern="mobileNoRegex" /> input valid?
+                = <code><b>{{userFrm.mobileno.$valid}}</b></code>, model = <code>{{mobileno}}</code>
+            </fieldset>
+
+        </form>
+
+        <fieldset>
+            <h4>Selected Value</h4>
+            <label ng-repeat="name in names" for="{{name}}"> {{name}}
+            <input type="radio" ng-model="my[0]" name="radioBtn" ng-value="name" id="{{name}}" name="ourfavourite" />
+            </label> You Select {{my[0]}}
+        </fieldset>
+
+        <fieldset>
+            <h4>Dropdown</h4>
+            <label>Color (null allowed):</label>
+            <select ng-model="selection" ng-options="productData.price as productData.name for productData in invoiceVm.products"></select>
+            <p>Selected: {{selection}}</p>
+        </fieldset>
+
+        <div ng-controller="StudentController as studentVm">
+            <p>Student Controller</p>
+            <input type="number" placeholder="Number 1" min="0" name="number1" ng-model="studentVm.numbers.number1" />
+            <input type="number" placeholder="Number 2" min="0" name="number2" ng-model="studentVm.numbers.number2" />
+            <p>Addition : {{studentVm.numbers.number1 + studentVm.numbers.number2}}</p>
+            <p>Multiplication : {{(studentVm.numbers.number1 && studentVm.numbers.number2) ? studentVm.numbers.number1 * studentVm.numbers.number2
+                : ''}}</p>
+            {{studentVm.NumberOne}}
+            <br/> FirstName from InvoiceController: {{invoiceVm.firstName}}
+            <hr/>
+        </div>-->
+        <div my-listing products="invoiceVm.products"></div>
+        
+       
+        <hr/>
+        <ul>
+            <li ng-repeat-start="product in invoiceVm.products" ng-repeat-end>
+                <span ng-class-odd="'odd'" ng-class-even="'even'">
+                {{product.name}} {{product.stock}}</span>
+            </li>
+        </ul>
+    </div>
+    <input ng-copy="copied=true" ng-init="copied=false; value='copy me'" ng-model="value"> copied : {{copied}}
+
+    <input ng-cut="cut=true" ng-init="cut=false; value='cut me'" ng-model="value"> cut: {{cut}}
+    <br/> Hide: <input type="checkbox" ng-model="checked"><br />
+    <div ng-hide="checked">
+        I hide when your checkbox is checked.
+    </div>
+    <br/>
+    <input ng-keydown="count = count + 1" ng-init="count=0"> key down count: {{count}}
+    <br/>
+
+
+    <script src="app.module.js"></script>
+    <script src="app.controller.js"></script>
+    <script src="app.service.js"></script>
+    <script src="app.factory.js"></script>
+
+    <script src="student/student.module.js"></script>
+    <script src="student/student.controller.js"></script>
+
+    <script src="utils/listing-directive/listing.directive.js"></script>
+
+
+</body>
+
+</html>
